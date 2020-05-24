@@ -1,5 +1,7 @@
 FROM ubuntu
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update
 RUN apt-get -y install vim
 
@@ -20,6 +22,9 @@ COPY 000-default.conf /etc/apache2/sites-available/
 # prod mode -- copy source code into container and 
 # turn on clean up job
 COPY pasta /var/www/pasta/
+RUN chmod a+w /var/www/pasta/pasta.txt
+RUN chmod a+w /var/www/pasta/files
 RUN crontab < /var/www/pasta/cronjob.txt
 
-CMD ["apachectl", "-DFOREGROUND"]
+#CMD ["apachectl", "-DFOREGROUND"]
+CMD service cron start && apachectl -DFOREGROUND
