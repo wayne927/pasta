@@ -1,6 +1,7 @@
 FROM ubuntu
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PASTA_ROOT=/var/www/pasta
 
 RUN apt-get update
 RUN apt-get -y install vim

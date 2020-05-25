@@ -1,2 +1,2 @@
-sudo docker build -t wayn3927/pasta:pi .
+sudo docker build -t wayn3927/pasta .
 
