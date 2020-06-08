@@ -79,7 +79,7 @@ body {
     background-color: #2222FF;
 }
 
-input[type=submit] {
+input[type=submit], button {
     padding: 0 20px 0 20px;
     padding-right: 20px;
     height: 50px;
@@ -90,7 +90,7 @@ input[type=submit] {
     cursor: pointer;
     border: none;
 }
-input[type=submit]:hover {
+input[type=submit]:hover, button:hover {
     background-color: #22BB22;
 }
 
@@ -135,7 +135,10 @@ input[type=submit]:hover {
 <div class='displayfile'>
 <form action="/" method="POST">
     <p><textarea rows="10" name="pasta_text" id="pastabox">{{pasta_text}}</textarea></p>
-    <p><input type="submit" value="Save"></p>
+    <p><input type="submit" value="Save">
+    &nbsp;&nbsp;
+    <button type="button" onclick="window.location.assign('{{pasta_text}}')">Go to URL</button>
+    </p>
 </form>
 </div>
 
