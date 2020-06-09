@@ -1,4 +1,4 @@
-sudo docker run -dit --rm \
+sudo docker run -d --rm \
     --name pasta-run \
     -p 80:80 \
     wayn3927/pasta

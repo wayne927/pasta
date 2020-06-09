@@ -9,6 +9,7 @@ RUN apt-get -y install vim
 RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
 RUN pip3 install Flask
+RUN pip3 install redis
 
 RUN apt-get -y install apache2
 RUN apt-get -y install libapache2-mod-wsgi-py3
@@ -23,7 +24,6 @@ COPY 000-default.conf /etc/apache2/sites-available/
 # prod mode -- copy source code into container and 
 # turn on clean up job
 COPY pasta /var/www/pasta/
-RUN chmod a+w /var/www/pasta/pasta.txt
 RUN chmod a+w /var/www/pasta/files
 RUN crontab < /var/www/pasta/cronjob.txt
 
