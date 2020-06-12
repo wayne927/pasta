@@ -26,13 +26,13 @@ def index() :
 @app.route('/', methods=['POST'])
 def upload() :
     try :
-        if (request.form['pasta_text']) :
+        if (request.form and request.form['pasta_text']) :
             return savepasta(request)
     except Exception as e:
         return 'Exception when saving pasta_text!! ' + str(e)
 
     try :
-        if (request.files['picfile']) :
+        if (request.files and request.files['picfile']) :
             return savefile(request)
     except Exception as e:
         return 'Exception when saving file!! ' + str(e)
