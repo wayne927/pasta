@@ -63,6 +63,7 @@ def returnfile(filename) :
 def savepasta(request) :
     str_input = request.form['pasta_text']
     cache.set('pasta_text', str_input)
+    cache.expire('pasta_text', 24*3600) # expires in 24 hours
 
     return index()
 
