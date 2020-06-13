@@ -133,7 +133,7 @@ input[type=submit]:hover, button:hover {
 </head>
 <body>
 <div class='displayfile'>
-<form action="/" method="POST">
+<form action="/upload_text" method="POST">
     <p><textarea rows="10" name="pasta_text" id="pastabox">{{pasta_text}}</textarea></p>
     <p><input type="submit" value="Save">
     &nbsp;&nbsp;
@@ -142,7 +142,7 @@ input[type=submit]:hover, button:hover {
 </form>
 </div>
 
-<form id="fileform"  action="/" method="POST" enctype="multipart/form-data">
+<form id="fileform"  action="/upload_file" method="POST" enctype="multipart/form-data">
     <h1>Upload file:</h1>
     <div id="chosenfilelist">No file chosen</div>
     <input type="file" id="choosefile" class="inputfile" name="picfile" onchange="displayFileName();" multiple>

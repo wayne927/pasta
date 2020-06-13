@@ -1,4 +1,4 @@
-from flask import url_for, render_template, request, make_response
+from flask import redirect, render_template, request, make_response
 from pasta import app
 import os
 import redis
@@ -23,21 +23,25 @@ def index() :
     
     return render_template('pasta.html', pasta_text=infile_text, files=file_list)
 
-@app.route('/', methods=['POST'])
-def upload() :
+@app.route('/upload_text/', methods=['POST'])
+def upload_text() :
     try :
         if (request.form and request.form['pasta_text']) :
             return savepasta(request)
+        else :
+            return savepasta(False)
     except Exception as e:
         return 'Exception when saving pasta_text!! ' + str(e)
 
+@app.route('/upload_file/', methods=['POST'])
+def upload_file() :
     try :
         if (request.files and request.files['picfile']) :
             return savefile(request)
+        else :
+            return redirect('/')
     except Exception as e:
         return 'Exception when saving file!! ' + str(e)
-
-    return "Error '/' POST"
 
 @app.route('/files/<filename>', methods=['GET'])
 def returnfile(filename) :
@@ -61,18 +65,21 @@ def returnfile(filename) :
 
 
 def savepasta(request) :
-    str_input = request.form['pasta_text']
+    if (request) :
+        str_input = request.form['pasta_text']
+    else :
+        str_input = ''
     cache.set('pasta_text', str_input)
     cache.expire('pasta_text', 24*3600) # expires in 24 hours
 
-    return index()
+    return redirect('/')
 
 def savefile(request) :
     files_input = request.files.getlist('picfile')
     for f in files_input :
         f.save(pasta_files + '/' + f.filename) 
     
-    return index()
+    return redirect('/')
 
 def file_size_str(size) :
     if (size > 1e9) :
