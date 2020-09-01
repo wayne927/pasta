@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:bionic
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PASTA_ROOT=/var/www/pasta
