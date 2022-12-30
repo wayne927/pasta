@@ -22,7 +22,7 @@ def permute(string):
     return ret
     
 def run(srcStr):
-    file = open('/usr/share/dict/words', 'r')
+    file = open('/usr/share/dict/words', 'r', encoding='utf-8')
     
     dat = file.read().split('\n')
     datFull = [word.lower() for word in dat]
