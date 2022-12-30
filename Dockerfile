@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PASTA_ROOT=/var/www/pasta
@@ -15,6 +15,9 @@ RUN apt-get -y install apache2
 RUN apt-get -y install libapache2-mod-wsgi-py3
 
 RUN apt-get -y install cron
+
+# Dictionary
+RUN apt-get -y install wamerican
 
 COPY 000-default.conf /etc/apache2/sites-available/
 
