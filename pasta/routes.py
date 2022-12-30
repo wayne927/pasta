@@ -6,6 +6,7 @@ import sys
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '.'))
 import wordScramble
+import gcodeFormat
 
 pasta_root = os.environ['PASTA_ROOT']
 pasta_files = pasta_root + '/files'
@@ -79,7 +80,25 @@ def word(letters):
     except Exception as e:           
         return 'Exception!! ' + str(e)
 
+@app.route('/gcode/', methods=['POST'])
+def gcode():
+    try:
+        if (request.form and request.form['gcode_text']):
+            text = request.form['gcode_text']
+            # remove all '\r'
+            text = ''.join([c for c in text if (c != '\r')])
+            # split them into list of lines
+            text = text.split('\n')
 
+            out = gcodeFormat.run(text)
+            out = out.replace('\n', '<br>\n')
+
+            return '<div style="font-family: monospace">' + out + '</div>'
+        else:
+            raise
+    except Exception as e:
+        return ('Exception!' + str(e))
+           
 def savepasta(request) :
     if (request) :
         str_input = request.form['pasta_text']

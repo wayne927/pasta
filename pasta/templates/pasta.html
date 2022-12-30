@@ -51,6 +51,10 @@ body {
     width: 100%;
 }
 
+#gcodebox {
+    width: 100%;
+}
+
 #chosenfilelist {
     border: 1px solid #BBBBBB;
     padding: 10px 10px;
@@ -161,6 +165,14 @@ input[type=submit]:hover, button:hover {
     {% endif %}
     </a></div>
 {% endfor %}
+
+<div class='displayfile'>
+<form action="/gcode/" method="POST">
+    <p><textarea rows="20" name="gcode_text" id="gcodebox"></textarea></p>
+    <p><input type="submit" value="Submit">
+</form>
+</div>
+
 
 </body>
 
