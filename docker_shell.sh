@@ -1,1 +1,1 @@
-sudo docker exec -it pasta-run bash
+sudo docker exec -it pasta-web-1 bash

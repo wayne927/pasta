@@ -1,3 +1,6 @@
+# development mode, just run the flask app locally
+# Need to change redis server to localhost in routes.py
+
 export PASTA_ROOT="$PWD/pasta"
 cd $PASTA_ROOT
 
