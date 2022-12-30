@@ -2,6 +2,10 @@ from flask import redirect, render_template, request, make_response
 from pasta import app
 import os
 import redis
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '.'))
+import wordScramble
 
 pasta_root = os.environ['PASTA_ROOT']
 pasta_files = pasta_root + '/files'
@@ -62,6 +66,18 @@ def returnfile(filename) :
         response.headers.set('Content-Type', 'application/octet-stream')
     
     return response
+
+@app.route('/word/<letters>', methods=['GET'])
+def word(letters):
+    try :
+        if (letters):
+            results = wordScramble.run(letters)
+            results = '<br>\n'.join(results)
+            return '<div style="font-family: monospace">' + results + '</div>'
+        else:
+            raise
+    except Exception as e:           
+        return 'Exception!! ' + str(e)
 
 
 def savepasta(request) :
